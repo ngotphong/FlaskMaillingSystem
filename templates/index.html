@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='styles.css') }}"
+		/>
+		<title>Email Sender</title>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Send Emails</h1>
+			<form method="post">
+				<label for="doc_url">Google Doc URL:</label>
+				<input type="text" name="doc_url" required />
+
+				<label for="sheet_url">Google Sheet URL:</label>
+				<input type="text" name="sheet_url" required />
+
+				<label for="sheet_title">Sheet Title:</label>
+				<input type="text" name="sheet_title" required />
+
+				<label for="subject">Email Subject:</label>
+				<input type="text" name="subject" required />
+
+				<button type="submit">Send Emails</button>
+			</form>
+			{% with messages = get_flashed_messages(with_categories=true) %} {%
+			if messages %}
+			<ul>
+				{% for category, message in messages %}
+				<li class="{{ category }}">{{ message }}</li>
+				{% endfor %}
+			</ul>
+			{% endif %} {% endwith %}
+		</div>
+	</body>
+</html>
